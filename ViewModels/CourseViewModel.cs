@@ -7,8 +7,16 @@ using System.Web;
 
 namespace BigSchool.ViewModels
 {
+    public class CoursesViewModel
+    {
+        public IEnumerable<Course> UpcomingCourses { get; set; }
+        public bool ShowAction { get; set; }
+
+    }
+
     public class CourseViewModel
     {
+        public int Id { get; set; }
         [Required]
         public string Place { get; set; }
         [Required]
@@ -20,9 +28,18 @@ namespace BigSchool.ViewModels
         [Required]
         public byte Category { get; set; }
         public IEnumerable<Category> Categories { get; set; }
+        public string Heading { get; set; }
+        public string Action
+        {
+            get { return (Id != 0 ? "Update" : "Create"); }
+        }
+
+
         public DateTime GetDateTime()
         {
             return DateTime.Parse(string.Format("{0} {1}", Date, Time));
         }
+
+
     }
 }
