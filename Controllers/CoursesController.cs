@@ -28,7 +28,7 @@ namespace BigSchool.Controllers
                 
 
             };
-            return View(viewModel);
+            return View( viewModel);
         }
         [Authorize]
         [HttpPost]
@@ -56,18 +56,22 @@ namespace BigSchool.Controllers
         public ActionResult Attending()
         {
             var userId = User.Identity.GetUserId();
+
+
             var courses = _dbContext.Attendances
                 .Where(a => a.AttendeeId == userId)
                 .Select(a => a.Course)
                 .Include(l => l.Lecturer)
                 .Include(l => l.Category)
                 .ToList();
+
             var viewModel = new CoursesViewModel
             {
                 UpcomingCourses = courses,
                 ShowAction = User.Identity.IsAuthenticated
             };
-            return View(viewModel);
+
+            return View( viewModel);
         }
         [Authorize]
         public ActionResult Edit(int id)
@@ -110,6 +114,49 @@ namespace BigSchool.Controllers
 
 
         }
+        [Authorize]
+        public ActionResult Mine()
+        {
+            var userId = User.Identity.GetUserId();
+            var courses = _dbContext.Courses
+                .Where(c => c.LecturerId == userId && c.DateTime > DateTime.Now)
+                .Include(l => l.Lecturer)
+                .Include(c => c.Category)
+                .ToList();
+
+
+            return View(courses);
+        }
+
+
+        // GET: Xoá
+        public ActionResult Delete(int id)
+        {
+            if (id == null)
+            {
+              
+            }
+            Course courseId = _dbContext.Courses.Find(id);
+            if (courseId == null)
+            {
+                return HttpNotFound();
+            }
+            return View(courseId);
+        }
+
+        // POST: Xoá
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Course courseId = _dbContext.Courses.Find(id);
+            _dbContext.Courses.Remove(courseId);
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index","Home");
+        }
+
+
+       
 
 
 

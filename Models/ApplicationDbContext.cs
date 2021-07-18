@@ -28,7 +28,7 @@ namespace BigSchool.Models
                 .HasRequired(a => a.Course)
                 .WithMany()
                 .WillCascadeOnDelete(false);
-            base.OnModelCreating(modelBuilder);
+            
 
             modelBuilder.Entity<ApplicationUser>()
                .HasMany(u => u.Followers)
@@ -36,9 +36,11 @@ namespace BigSchool.Models
                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ApplicationUser>()
-               .HasMany(u => u.Followers)
-               .WithRequired(f => f.Followee)
+               .HasMany(u => u.Followees)
+               .WithRequired(f => f.Follower)
                .WillCascadeOnDelete(false);
+
+
             base.OnModelCreating(modelBuilder);
 
         }

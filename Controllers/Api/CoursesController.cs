@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Net.Http;
 using System.Web.Mvc;
+using HttpDeleteAttribute = System.Web.Http.HttpDeleteAttribute;
 
 namespace BigSchool.Controllers.Api
 {
@@ -17,16 +19,17 @@ namespace BigSchool.Controllers.Api
             _dbContext = new ApplicationDbContext();
 
         }
-        // GET: Courses
-        [System.Web.Http.HttpDelete]
-        public IHttpActionResult Cancel(int id)         
+
+        [HttpDelete]
+        public IHttpActionResult Cancel(int id)
         {
-            var userId = User.Identity.GetUserId();
+            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
             var course = _dbContext.Courses.Single(c => c.Id == id && c.LecturerId == userId);
             if (course.IsCanceled)
                 return NotFound();
             course.IsCanceled = true;
             _dbContext.SaveChanges();
+
             return Ok();
         }
     }

@@ -184,7 +184,7 @@
     <Compile Include="Controllers\FollowingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="DTOs\AttendancesDto.cs" />
+    <Compile Include="DTOs\AttendanceDto.cs" />
     <Compile Include="DTOs\FollowingDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -216,6 +216,14 @@
     <Compile Include="Migrations\202107111111013_AddIsCanceledColumnToCourse.cs" />
     <Compile Include="Migrations\202107111111013_AddIsCanceledColumnToCourse.Designer.cs">
       <DependentUpon>202107111111013_AddIsCanceledColumnToCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107181219154_AddFollowingsTable1.cs" />
+    <Compile Include="Migrations\202107181219154_AddFollowingsTable1.Designer.cs">
+      <DependentUpon>202107181219154_AddFollowingsTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107181319510_AddAttendance1.cs" />
+    <Compile Include="Migrations\202107181319510_AddAttendance1.Designer.cs">
+      <DependentUpon>202107181319510_AddAttendance1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -302,6 +310,7 @@
     <Content Include="Views\Followings\Index.cshtml" />
     <Content Include="Views\Courses\Attending.cshtml" />
     <Content Include="Views\Courses\Mine.cshtml" />
+    <Content Include="Views\Courses\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -341,6 +350,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107111111013_AddIsCanceledColumnToCourse.resx">
       <DependentUpon>202107111111013_AddIsCanceledColumnToCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107181219154_AddFollowingsTable1.resx">
+      <DependentUpon>202107181219154_AddFollowingsTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107181319510_AddAttendance1.resx">
+      <DependentUpon>202107181319510_AddAttendance1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
